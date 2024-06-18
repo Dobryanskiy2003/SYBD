@@ -1,0 +1,13 @@
+SET IMPLICIT_TRANSACTIONS ON;
+SET NOCOUNT ON;
+USE Nutrition;
+GO
+INSERT Request_warehouse VALUES (90, '10/11/2023 10:30:00'); 
+INSERT Request_warehouse VALUES(80, '28/11/2023 14:20:00'); 
+PRINT @@TRANCOUNT;
+SAVE TRAN point_one;
+INSERT Request_warehouse VALUES (100, '13/11/2023 07:31:00'); 
+ROLLBACK TRAN point_one;
+COMMIT TRAN;
+PRINT @@TRANCOUNT;
+SELECT * FROM Request_warehouse;
